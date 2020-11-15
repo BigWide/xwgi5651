@@ -1,0 +1,16 @@
+Header  header
+int32   gpsweek
+float64 gpstime
+float32 heading
+float32 pitch
+float32 roll
+float64 lat
+float64 lon
+float64 alt
+float32 ve
+float32 vn
+float32 vu
+float32 baseline
+int16   nsv1
+int16   nsv2
+uint8   status

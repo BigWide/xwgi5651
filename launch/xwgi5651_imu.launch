@@ -1,0 +1,10 @@
+<launch>
+
+    <!-- run xwgi5651_gtimu_pub -->
+    <node pkg="xwgi5651" 
+          type="xwgi5651_gtimu_pub" 
+          name="xwgi5651gpfdppub" 
+          output="screen"
+    />
+          
+</launch>

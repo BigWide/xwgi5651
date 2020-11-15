@@ -1,0 +1,39 @@
+字段号	名称		说明						格式		举例
+1	Header		FPD协议头					$GPFPD		$GPFPD
+2	GPSWeek		自1980-1-6至当前的星期数（格林尼治时间）		wwww		1451
+3	GPSTime		自本周日0:00:00至当前的秒数（格林尼治时间）	ssssss.sss	368123.300
+4	Heading		偏航角（0～59.99）				hhh.hh		102.40
+5	Pitch		俯仰角（-90～90）				+/-pp.pp	1.01
+6	Roll		横滚角（-180～180）				+/-rrr.rr	-0.80
+7	Latitude	纬度（-90～90）					+/-ll.lllllll	34.1966004
+8	Longitude	经度（-180～180）				+/-lll.lllllll	108.8551924
+9	Altitude	高度，单位：m					+/-aaaaa.aa	80.60
+10	Ve		东向速度，单位：m/s				+/-eee.eee	4.717
+11	Vn		北向速度，单位：m/s				+/-nnn.nnn	10.206
+12	Vu		天向速度，单位：m/s				+/-uuu.uuu	-0.020
+13	Baseline	基线长度，单位：m				bbb.bbb		13.898
+14	NSV1		天线1卫星数					nn		11
+15	NSV2		天线2卫星数					nn		12
+16	Status		系统状态：低半字节ASCII码：			ss		2F
+			0：初始化
+			1：粗对准
+			2：经对准
+			3：GPS定位
+			4：GPS定向
+			5：RTK
+			6：DMI组合
+			7：DMI标定
+			8：纯惯性
+			9：零速校正
+			A：VG模式
+			03，04：单点，水平精度1.5m（RMS），姿态精度0.1度
+			45，4B：RTK-Fixed，水平精度2cm（RMS），姿态精度0.1度
+			55，5B：RTK-Float，水平精度80cm（RMS），姿态精度0.1度
+			高半字节ASCII码：
+			0：GPS
+			1：BD（定制）
+			2：双模（定制）
+
+17	cs		校验						*hh		*58
+18	<CR><LF>	固定包尾							<CR><LF>
+
