@@ -4,7 +4,7 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "xwgi5651/Xwgi5651Gpfpd.h"//自定义消息的头文件
-#include "pos320/Pos320Nav.h"//自定义消息的头文件
+#include "xwgi5651/Pos320Nav.h"//自定义消息的头文件
 #include <serial/serial.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -65,7 +65,7 @@ int cscomputed;//计算得到的校验，除去$*hh<CR><LF>共6个字符
 int csreceived;//接收到的校验
 char strtemp[3];
 char temp_field[30] = {0};
-pos320::Pos320Nav msg_pos320_nav;//自定义消息
+xwgi5651::Pos320Nav msg_pos320_nav;//自定义消息
 xwgi5651::Xwgi5651Gpfpd msg_xwgi5651_gpfpd;//自定义消息
 
 ros::Publisher talker_xwgi5651_gpfpd;//发布导航数据
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
 	
     //注册发布者，使用自定义消息结构Xwgi5651Gpfpd，topic为topic_xwgi5651_gpfpd，发布队列长度为1000
 	talker_xwgi5651_gpfpd = nh_gpfpd.advertise<xwgi5651::Xwgi5651Gpfpd>("topic_xwgi5651_gpfpd", 1000);//发布导航数据
-	talker_pos320 = nh_gpfpd.advertise<pos320::Pos320Nav>("topic_pos320_nav", 1000);//发布导航数据
+	talker_pos320 = nh_gpfpd.advertise<xwgi5651::Pos320Nav>("topic_pos320_nav", 1000);//发布导航数据
 
   	try 
     { 

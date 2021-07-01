@@ -1,0 +1,16 @@
+Header  header
+int32   weeknum
+float64 weekms
+float32 yaw
+float32 pitch
+float32 roll
+float64 lat
+float64 lon
+float64 alt
+float32 ve
+float32 vn
+float32 vd
+float32 baseline
+int16   satnum
+int16   nsv2
+uint8   navstate

@@ -39,7 +39,6 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs 
   serial
-  pos320
 )
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
 ##     catkin_package(CATKIN_DEPENDS ...)
@@ -52,6 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(FILES
   Xwgi5651Gtimu.msg
   Xwgi5651Gpfpd.msg
+  Pos320Nav.msg
 )
 
 ## Generate services in the 'srv' folder
