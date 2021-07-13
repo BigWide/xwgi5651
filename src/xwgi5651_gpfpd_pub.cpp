@@ -211,8 +211,9 @@ int main(int argc, char *argv[])
 		if(numinbuf > 0)//串口缓冲区有数据
 		{ 
             numgetted = ser.read(rbuf, numinbuf);//串口缓冲区数据读到rbuf中
+			printf("RBUF $ is: %s\n",rbuf);//输出接收到$前收到的数据
 			//CLEAR_LINE();
-			//printf("byte get out = %d\n",numgetted);
+			printf("byte get out = %d\n",numgetted);
 			if(numgetted == numinbuf)//取回的数据个数与缓冲区中有的数据个数相同，说明读串口成功
 			{
 				for(int i=0; i<numgetted; i++)//对收到的字符逐个处理
@@ -223,7 +224,7 @@ int main(int argc, char *argv[])
 					if(rbuf[i]=='$' && StateParser>=1 && StateParser<=9)
 					{
 						printf("STATE %d is broken by $！\n", StateParser);//输出正处在哪个处理阶段
-						printf("Ahead $ is: %s\n",OneFrame);//输出接收到$前收到的数据
+						//printf("Ahead $ is: %s\n",OneFrame);//输出接收到$前收到的数据
 
 						//PubMsg();
 						memset(OneFrame, 0, sizeof(OneFrame));//清空字符串
@@ -519,6 +520,7 @@ int main(int argc, char *argv[])
 						//校验和第二个字符	
 						case 7:
 							OneFrame[CntByte] = rbuf[i];
+							printf("case7i %x \n",rbuf[i]);
 							CntByte++;//指向下一个空位
 
 							if((rbuf[i]>='0' && rbuf[i]<='9') || (rbuf[i]>='A' && rbuf[i]<='F'))//校验和字节应是一个十六进制数
@@ -561,11 +563,13 @@ int main(int argc, char *argv[])
 						//等待结束标志<CR>=0x0d
 						case 8:
 							OneFrame[CntByte] = rbuf[i];
+							printf("case8i-1 %x \n",rbuf[i-1]);
+							printf("case8i+1 %x \n",rbuf[i+1]);
 							CntByte++;//指向下一个空位
 							if(rbuf[i] == '\r')
 							{
 								//msg_xwgi5651_gpfpd.flag_cr = 0;
-								//printf("End flag <CR>=0x0%x OK!\n",rbuf[i]);
+								printf("End flag <CR>=0x0%x OK!\n",rbuf[i]);
 								StateParser = 9;
 							}
 							else
@@ -574,7 +578,8 @@ int main(int argc, char *argv[])
 								//PubMsg();
 								memset(OneFrame, 0, sizeof(OneFrame));
 								StateParser = 0;
-								//printf("End flag <CR> error!\n");
+								printf("case8i %x \n",rbuf[i]);
+								printf("End flag <CR> error!\n");
 							}
 							break;
 						
@@ -599,6 +604,7 @@ int main(int argc, char *argv[])
 								printf("End flag <LF> error!\n");
 							}
 							
+							printf("hdsaui\n");
 							PubMsg();
 							memset(OneFrame, 0, sizeof(OneFrame));
 							StateParser = 0;

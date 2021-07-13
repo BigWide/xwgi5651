@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 		if(numinbuf > 0)//串口缓冲区有数据
 		{ 
             int numgetted = ser.read(rbuf, numinbuf);//串口缓冲区数据读到rbuf中
-			//printf("byte get out = %d\n",numgetted);
+			printf("byte get out = %d\n%s\n",numgetted,rbuf);
 			if(numgetted == numinbuf)//取回的数据个数与缓冲区中有的数据个数相同，说明读串口成功
 			{
 				for(int i=0; i<numgetted; i++)//对收到的字符逐个处理
